@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weather Dashboard</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Chart.js Core -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+
+  <!-- 🧩 Chart.js Data Labels Plugin -->
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0"></script>
+
+  <!-- Custom Script -->
+  <script src="script.js" defer></script>
+</head>
+
+
+<body>
+  <div class="container">
+    <!-- Header Section -->
+    <div class="header">
+      <div class="clock" id="clock"></div>
+      <div class="search-container">
+        <input
+          type="text"
+          class="search-input"
+          id="cityInput"
+          placeholder="Enter city name..."
+          onkeypress="if(event.key==='Enter') searchWeather()"
+        />
+        <button class="search-btn" onclick="searchWeather()">Search</button>
+      </div>
+    </div>
+
+    <!-- Loading -->
+    <div id="loading" class="loading" style="display: none;">
+      Loading weather data...
+    </div>
+
+    <!-- Weather Data Content -->
+    <div id="weatherContent" style="display: none;">
+
+      <div class="main-content">
+        <!-- Left Weather Info Card -->
+        <div class="weather-card">
+          <div class="city-name" id="cityName"></div>
+
+          <div class="temperature-section">
+            <div class="temperature" id="temperature"></div>
+            <div class="weather-icon" id="weatherIcon"></div>
+          </div>
+
+          <div class="condition" id="condition"></div>
+
+          <!-- Weather Details -->
+          <div class="details-grid">
+            <div class="detail-item">
+              <div class="detail-label">Air Quality</div>
+              <div class="detail-value" id="aqi"></div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">Region</div>
+              <div class="detail-value" id="region"></div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">Country</div>
+              <div class="detail-value" id="country"></div>
+            </div>
+          </div>
+
+          <!-- Sun Arc -->
+          <div class="sun-arc">
+            <svg class="arc-path" viewBox="0 0 200 100">
+              <path
+                d="M 10 90 Q 100 10, 190 90"
+                stroke="rgba(255,255,255,0.3)"
+                stroke-width="2"
+                fill="none"
+              />
+            </svg>
+            <div class="sun-position" id="sunPosition">☀️</div>
+          </div>
+
+          <div class="arc-labels">
+            <span id="sunrise"></span>
+            <span id="sunset"></span>
+          </div>
+        </div>
+
+        <!-- Right Chart Card -->
+        <div class="chart-card">
+          <div class="section-title">24-Hour Forecast</div>
+          <canvas id="hourlyChart"></canvas>
+        </div>
+      </div>
+
+      <!-- Daily Forecast Table -->
+      <div class="chart-card daily-forecast">
+        <div class="section-title">5-Day Forecast</div>
+        <div style="overflow-x: auto;">
+          <table class="forecast-table" id="dailyTable">
+            <thead>
+              <tr>
+                <th>Day</th>
+                <th>Icon</th>
+                <th>Min</th>
+                <th>Max</th>
+                <th>Avg</th>
+                <th>Condition</th>
+              </tr>
+            </thead>
+            <tbody id="dailyBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
