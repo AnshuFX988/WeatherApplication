@@ -23,7 +23,7 @@ It provides real-time weather, AQI, and forecast details for any city.
 **Backend:** Spring Boot, Java, RestTemplate, Weather API  
 **Frontend:** HTML, CSS, JavaScript  
 **Database (if used):** H2 / Local  
-**Tools:** IntelliJ IDEA, Postman  
+**Tools:** IntelliJ IDEA, Postman, VS Code
 
 ---
 
